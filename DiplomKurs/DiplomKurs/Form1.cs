@@ -159,18 +159,20 @@ namespace DiplomKurs
             foreach (var elem in dictionary)
             {
                 if (elem.Key != w) continue;
-                dataGridView11.Rows.Add(elem.Key, elem.Value.Count, elem.Value.Frequecy);
-                CArr.Add(elem.Value.Count);
-                FArr.Add(elem.Value.Frequecy);
-                ls.Add(new StringIntPair(elem.Key, elem.Value.Count));
+                dataGridView11.Rows.Add(elem.Key, elem.Value.Count, 1);
+                chart17.Series[0].Points.Add(elem.Value.Count);
+                chart17.Series[0].Points[0].Label = elem.Key;
+                //CArr.Add(elem.Value.Count);
+                //FArr.Add(elem.Value.Frequecy);
+                //ls.Add(new StringIntPair(elem.Key, elem.Value.Count));
                 //sl.Add(elem.Value,elem.Key);
             }
 
 
-            dataGridView11.Rows.Add("Sum = ", countOfWords, "1");
-            double oC = Math.Sqrt(Mathematic.Dispersia(CArr.ToArray()));
-            double oF = Math.Sqrt(Mathematic.Dispersia(FArr.ToArray()));
-            dataGridView11.Rows.Add("O", oC, oF);
+            //dataGridView11.Rows.Add("Sum = ", countOfWords, "1");
+            //double oC = Math.Sqrt(Mathematic.Dispersia(CArr.ToArray()));
+            //double oF = Math.Sqrt(Mathematic.Dispersia(FArr.ToArray()));
+            //dataGridView11.Rows.Add("O", oC, oF);
 
             //ls.Sort();
             //int point = 0;
@@ -444,9 +446,9 @@ namespace DiplomKurs
             for (int i = 0; i < res.Count; i++)
             {
                 chart20.Series[0].Points.AddY(res[i]);
-                chart20.Series[0].Points[i].Label = ((int)average).ToString();
+                chart20.Series[0].Points[i].Label = p[i].Second.ToString(); //((int)average).ToString();
                 chart21.Series[0].Points.AddXY(litelP[i].Item1, litelP[i].Item2);
-                chart12.Series[0].Points.AddY(bigP[i]);
+                chart22.Series[0].Points.AddY(bigP[i]);
                 dataGridView13.Rows.Add(i, p[i].Second, average, litelP[i].Item2, bigP[i]);
                 listAverages.Add((int)average);
                 average += size;
@@ -543,8 +545,10 @@ namespace DiplomKurs
 
             string pathNW = string.Format("{0}/{1}",folder,"NewWord");
             string pathF = string.Format("{0}/{1}",folder,"F");
+            string pathSW = string.Format("{0}/{1}", folder, "SW");
             Directory.CreateDirectory(pathNW); 
             Directory.CreateDirectory(pathF);
+            Directory.CreateDirectory(pathSW); 
 
 
 
@@ -559,6 +563,13 @@ namespace DiplomKurs
             DataTableToCSV(GetDataTableFromDGV(dataGridView8), pathF + "/Ti.txt");
             DataTableToCSV(GetDataTableFromDGV(dataGridView9), pathF + "/New Words.txt");
             DataTableToCSV(GetDataTableFromDGV(dataGridView10), pathF + "/F.txt");
+
+
+            DataTableToCSV(GetDataTableFromDGV(dataGridView11), pathSW + "/AnalysisText.txt");
+            DataTableToCSV(GetDataTableFromDGV(dataGridView12), pathSW + "/dTi.txt");
+            DataTableToCSV(GetDataTableFromDGV(dataGridView13), pathSW + "/Ti.txt");
+            DataTableToCSV(GetDataTableFromDGV(dataGridView14), pathSW + "/New Words.txt");
+            DataTableToCSV(GetDataTableFromDGV(dataGridView15), pathSW + "/F.txt");
 
             //  SaveTextAn(folder+"/AnalysisText.txt"); 
             //SaveDTI(folder+"/dTI.txt");
@@ -728,11 +739,16 @@ namespace DiplomKurs
             string w = textBox12.Text;
             //ParseWordForF pf = new ParseWordForF(openFileDialog1.FileName, f, dictAnlysText);
             ParseWordSelectedWord pf = new ParseWordSelectedWord(openFileDialog1.FileName,w);
-
-            pf.DoResult();
+            pf.DoResult(); 
+            if (!pf.ListOfNewWords.Contains(true))
+            {
+                MessageBox.Show("Такого слова немає в тексті!");
+                return; 
+            }
+           // pf.DoResult();
             this.pws = pf; 
 
-            DrawSW(dictAnlysText, pf.CountOfWords, w);
+           
 
             chart17.Series[0].Points.Clear();
             chart18.Series[0].Points.Clear();
@@ -754,7 +770,7 @@ namespace DiplomKurs
 
             Dictionary<string, ResearchElement> dict = pw.GetWordsDictinary();
 
-
+            DrawSW(dictAnlysText, pf.CountOfWords, w);
             dictAnlysText = dict;
             //DrawF(dict, pwf.CountOfWords, f);
             DrawImovirnSW(pws);
