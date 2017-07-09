@@ -109,3 +109,14 @@ D:\Programs\DiplomKurs\DiplomKurs\DiplomKurs\obj\Debug\DiplomKurs.csprojResolveA
 D:\Programs\DiplomKurs\DiplomKurs\DiplomKurs\obj\Debug\DiplomKurs.Form1.resources
 D:\Programs\DiplomKurs\DiplomKurs\DiplomKurs\obj\Debug\DiplomKurs.Properties.Resources.resources
 D:\Programs\DiplomKurs\DiplomKurs\DiplomKurs\obj\Debug\DiplomKurs.csproj.GenerateResource.Cache
+C:\Бурбан\MainRepos\DiplomKurs\DiplomKurs\bin\Debug\DiplomKurs.exe.config
+C:\Бурбан\MainRepos\DiplomKurs\DiplomKurs\obj\Debug\DiplomKurs.exe
+C:\Бурбан\MainRepos\DiplomKurs\DiplomKurs\obj\Debug\DiplomKurs.pdb
+C:\Бурбан\MainRepos\DiplomKurs\DiplomKurs\bin\Debug\DiplomKurs.exe
+C:\Бурбан\MainRepos\DiplomKurs\DiplomKurs\bin\Debug\DiplomKurs.pdb
+C:\Бурбан\MainRepos\DiplomKurs\DiplomKurs\bin\Debug\nunit.framework.dll
+C:\Бурбан\MainRepos\DiplomKurs\DiplomKurs\bin\Debug\nunit.framework.xml
+C:\Бурбан\MainRepos\DiplomKurs\DiplomKurs\obj\Debug\DiplomKurs.csprojResolveAssemblyReference.cache
+C:\Бурбан\MainRepos\DiplomKurs\DiplomKurs\obj\Debug\DiplomKurs.Form1.resources
+C:\Бурбан\MainRepos\DiplomKurs\DiplomKurs\obj\Debug\DiplomKurs.Properties.Resources.resources
+C:\Бурбан\MainRepos\DiplomKurs\DiplomKurs\obj\Debug\DiplomKurs.csproj.GenerateResource.Cache

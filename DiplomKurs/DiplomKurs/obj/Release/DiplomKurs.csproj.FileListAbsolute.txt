@@ -1,0 +1,10 @@
+C:\Бурбан\MainRepos\DiplomKurs\DiplomKurs\bin\Release\DiplomKurs.exe.config
+C:\Бурбан\MainRepos\DiplomKurs\DiplomKurs\bin\Release\DiplomKurs.exe
+C:\Бурбан\MainRepos\DiplomKurs\DiplomKurs\bin\Release\DiplomKurs.pdb
+C:\Бурбан\MainRepos\DiplomKurs\DiplomKurs\bin\Release\nunit.framework.dll
+C:\Бурбан\MainRepos\DiplomKurs\DiplomKurs\bin\Release\nunit.framework.xml
+C:\Бурбан\MainRepos\DiplomKurs\DiplomKurs\obj\Release\DiplomKurs.Form1.resources
+C:\Бурбан\MainRepos\DiplomKurs\DiplomKurs\obj\Release\DiplomKurs.Properties.Resources.resources
+C:\Бурбан\MainRepos\DiplomKurs\DiplomKurs\obj\Release\DiplomKurs.csproj.GenerateResource.Cache
+C:\Бурбан\MainRepos\DiplomKurs\DiplomKurs\obj\Release\DiplomKurs.exe
+C:\Бурбан\MainRepos\DiplomKurs\DiplomKurs\obj\Release\DiplomKurs.pdb

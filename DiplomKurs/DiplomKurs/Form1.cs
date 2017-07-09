@@ -93,10 +93,10 @@ namespace DiplomKurs
             }
 
 
-            dataGridView1.Rows.Add("Sum = ",countOfWords,"1");
+           // dataGridView1.Rows.Add("Sum = ",countOfWords,"1");
             double oC = Math.Sqrt(Mathematic.Dispersia(CArr.ToArray()));
             double oF = Math.Sqrt(Mathematic.Dispersia(FArr.ToArray()));
-            dataGridView1.Rows.Add("O",(int)oC,oF); 
+         //   dataGridView1.Rows.Add("O",(int)oC,oF); 
 
             ls.Sort();
             int point = 0; 
@@ -132,10 +132,10 @@ namespace DiplomKurs
             }
 
 
-            dataGridView6.Rows.Add("Sum = ", countOfWords, "1");
+       //     dataGridView6.Rows.Add("Sum = ", countOfWords, "1");
             double oC = Math.Sqrt(Mathematic.Dispersia(CArr.ToArray()));
             double oF = Math.Sqrt(Mathematic.Dispersia(FArr.ToArray()));
-            dataGridView6.Rows.Add("O", oC, oF);
+          //  dataGridView6.Rows.Add("O", oC, oF);
 
             ls.Sort();
             int point = 0;
@@ -197,7 +197,7 @@ namespace DiplomKurs
                 newWords_P = p;
                 //THIS PLACE
                 var disp = Mathematic.Dispersia(p.ToArray());
-                dataGridView4.Rows.Add("O", " ", Math.Sqrt(disp)); 
+            //    dataGridView4.Rows.Add("O", " ", Math.Sqrt(disp)); 
             }
             catch { }
         }
@@ -215,7 +215,7 @@ namespace DiplomKurs
                 //newWords_P = p;
                 //THIS PLACE
                 var disp = Mathematic.Dispersia(p.ToArray());
-                dataGridView9.Rows.Add("O", " ", Math.Sqrt(disp));
+           //     dataGridView9.Rows.Add("O", " ", Math.Sqrt(disp));
             }
             catch { }
         }
@@ -234,7 +234,7 @@ namespace DiplomKurs
                 //newWords_P = p;
                 //THIS PLACE
                 var disp = Mathematic.Dispersia(p.ToArray());
-                dataGridView14.Rows.Add("O", " ", Math.Sqrt(disp));
+           //     dataGridView14.Rows.Add("O", " ", Math.Sqrt(disp));
             }
             catch { }
         }
@@ -271,7 +271,7 @@ namespace DiplomKurs
             var d2 = Mathematic.GetSqureError(listDivSum.ToArray());
             var d3 = Mathematic.GetSqureError(BigP.ToArray());
 
-            dataGridView2.Rows.Add("O",d1,d2,d3);
+         //   dataGridView2.Rows.Add("O",d1,d2,d3);
  
             //for (int i = 0; i < imovirnist.n.Length;i++ )
             //{
@@ -317,7 +317,7 @@ namespace DiplomKurs
             var d2 = Mathematic.GetSqureError(listDivSum.ToArray());
             var d3 = Mathematic.GetSqureError(BigP.ToArray());
 
-            dataGridView7.Rows.Add("O", d1, d2, d3);
+          //  dataGridView7.Rows.Add("O", d1, d2, d3);
 
             //for (int i = 0; i < imovirnist.n.Length;i++ )
             //{
@@ -364,7 +364,7 @@ namespace DiplomKurs
             var d2 = Mathematic.GetSqureError(listDivSum.ToArray());
             var d3 = Mathematic.GetSqureError(BigP.ToArray());
 
-            dataGridView7.Rows.Add("O", d1, d2, d3);
+          //  dataGridView7.Rows.Add("O", d1, d2, d3);
 
             //for (int i = 0; i < imovirnist.n.Length;i++ )
             //{
@@ -392,10 +392,10 @@ namespace DiplomKurs
             double average = size/2;  
             for (int i = 0; i < res.Count; i++) 
             {
-                chart6.Series[0].Points.AddY(res[i]);
+                chart6.Series[0].Points.AddXY(i,res[i]);
                 chart6.Series[0].Points[i].Label = ((int)p[i].Second).ToString(); 
                 chart4.Series[0].Points.AddXY(litelP[i].Item1,litelP[i].Item2);
-                chart5.Series[0].Points.AddY(bigP[i]);
+                chart5.Series[0].Points.AddXY(i,bigP[i]);
                 dataGridView3.Rows.Add(i,p[i].Second,average,litelP[i].Item2,bigP[i]);
                 listAverages.Add((int)average); 
                 average += size; 
@@ -420,10 +420,10 @@ namespace DiplomKurs
             double average = size / 2;
             for (int i = 0; i < res.Count; i++)
             {
-                chart12.Series[0].Points.AddY(res[i]);
+                chart12.Series[0].Points.AddXY(i,res[i]);
                 chart12.Series[0].Points[i].Label = ((int)average).ToString();
                 chart13.Series[0].Points.AddXY(litelP[i].Item1, litelP[i].Item2);
-                chart14.Series[0].Points.AddY(bigP[i]);
+                chart14.Series[0].Points.AddXY(i,bigP[i]);
                 dataGridView8.Rows.Add(i, p[i].Second, average, litelP[i].Item2, bigP[i]);
                 listAverages.Add((int)average);
                 average += size;
@@ -445,10 +445,10 @@ namespace DiplomKurs
             double average = size / 2;
             for (int i = 0; i < res.Count; i++)
             {
-                chart20.Series[0].Points.AddY(res[i]);
+                chart20.Series[0].Points.AddXY(i,res[i]);
                 chart20.Series[0].Points[i].Label = p[i].Second.ToString(); //((int)average).ToString();
                 chart21.Series[0].Points.AddXY(litelP[i].Item1, litelP[i].Item2);
-                chart22.Series[0].Points.AddY(bigP[i]);
+                chart22.Series[0].Points.AddXY(i,bigP[i]);
                 dataGridView13.Rows.Add(i, p[i].Second, average, litelP[i].Item2, bigP[i]);
                 listAverages.Add((int)average);
                 average += size;
