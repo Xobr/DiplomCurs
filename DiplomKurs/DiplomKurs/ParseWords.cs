@@ -57,7 +57,7 @@ namespace DiplomKurs
 
     }
 
-    class ResearchElement
+    public class ResearchElement
     {
         public int Count;
         public double Frequecy;
@@ -69,7 +69,7 @@ namespace DiplomKurs
         }
     }
 
-    class ParseWords
+    public class ParseWords
     {
         protected string connectionString;
         protected int currentIndex = 0;
@@ -80,7 +80,9 @@ namespace DiplomKurs
 
         public List<bool> ListOfNewWords = new List<bool>();
 
-        public int CountOfWords { get; set; }
+        public virtual int CountOfWords { get; set; }
+
+        public int? LengthOfWord { get; set; }
 
         public ParseWords(string connectionStr)
         {
@@ -88,7 +90,7 @@ namespace DiplomKurs
         }
 
         private Encoding getEncoding(string fileName)
-        {
+        { 
             using (var reader = new System.IO.StreamReader(fileName))
             {
                 reader.Peek(); // you need this!
@@ -108,22 +110,26 @@ namespace DiplomKurs
                 }
             } 
             FillFrequecy(wordsDictionary);
-            //newWords.RemoveAt(0);
         }
 
-        public Dictionary<string, ResearchElement> GetWordsDictinary()
+        public Dictionary<string, ResearchElement> GetWordsDictinary
         {
-            return wordsDictionary; 
+            get { return wordsDictionary; }
         }
 
         public virtual void GetCountsOfWords(string inputText)
         {
             string[] strArr = inputText.Split(' ');
             
-           // var output = new Dictionary<string,ResearchElement>();
             string current = GetWord(strArr[0]);
+                    
+
             foreach (var s in strArr)
             {
+                if (LengthOfWord != null)
+                    if (LengthOfWord != s.Length)
+                        continue;
+                
                 currentIndex++;
                 string newStr = GetWord(s);
                 if(newStr==null) continue;
@@ -141,15 +147,7 @@ namespace DiplomKurs
                 } 
                 CountOfWords++;
                 
-                //if(!newStr.Equals(current))
-                //{
-                //    newWords.Add(currentIndex);
-                //    current = (string)newStr.Clone(); 
-                //    currentIndex = 0; 
-                //}
             }
-           // newWords.RemoveAt(0);
-           // FillFrequecy(wordsDictionary);
         }
 
         protected void FillFrequecy(Dictionary<string, ResearchElement> dict)
@@ -180,7 +178,7 @@ namespace DiplomKurs
         }
     }
 
-    class ParseWordForF: ParseWords 
+    public class ParseWordForF: ParseWords 
     {
         public List<string> wordsF;
 
@@ -221,7 +219,7 @@ namespace DiplomKurs
         }
     }
 
-    class ParseWordSelectedWord : ParseWords
+    public class ParseWordSelectedWord : ParseWords
     {
         string word;
 
@@ -250,8 +248,8 @@ namespace DiplomKurs
             }
         }
     }
-
-    class ParseWordSelectedL : ParseWordForF
+    
+    public class ParseWordSelectedL : ParseWordForF
     {
         int l;
 
@@ -273,4 +271,140 @@ namespace DiplomKurs
             wordsF = res;
         }
     }
+
+    public class ParseWordNGram : ParseWords
+    {
+        private string ngram;
+        protected int size; 
+
+        public ParseWordNGram(string path,string ngram,int size) : base(path)
+        {
+            this.ngram = ngram;
+            this.size = size;
+        }
+
+        public override void GetCountsOfWords(string inputText)
+        {
+            for (int i = 0; i < inputText.Length - size; i++)
+            {
+                if (EqualNgram(i, inputText,ngram))
+                {
+                    ListOfNewWords.Add(true);
+                    i += size;
+                }
+                else
+                {
+                    ListOfNewWords.Add(false); 
+                }
+            }
+        }
+
+        public bool EqualNgram(int start, string str,string ngram)
+        {
+            for (int i = 0; i < size; i++)
+            {
+                int j = start + i;
+                if (ngram[i] != str[j])
+                    return false;
+            }
+            return true;
+        }
+    }
+
+    public class ParseWordNGramChars : ParseWordNGram
+    {
+        private bool latterMode;
+       
+        public ParseWordNGramChars(string path,int size ,bool latterMode) : base(path,null,size)
+        {
+            this.latterMode = latterMode; 
+        }
+
+        public override void GetCountsOfWords(string inputText)
+        {
+            if (latterMode)
+                inputText = inputText.RemoveStopChars(); 
+            for (int i = 0; i < inputText.Length - size; i++)
+            {
+                string ng = inputText.Substring(i, size);
+                if (latterMode)
+                {
+                    bool isStopSymbol = false;
+                    Config.StopSymbolLatter.ForEach(x => isStopSymbol = ng.Contains(x));
+                    if (isStopSymbol)
+                        continue;
+                }
+                if (wordsDictionary.ContainsKey(ng))
+                {
+                    ListOfNewWords.Add(false); 
+                    wordsDictionary[ng].Count++; 
+                }
+                else
+                {
+                    newWords.Add(currentIndex);
+                    currentIndex = 0;
+                    ListOfNewWords.Add(true); 
+                    wordsDictionary.Add(ng, new ResearchElement(1, 0));
+                    i += size - 1;
+                }
+                CountOfWords++;
+            }
+        }
+    }
+
+    public class ParseWordLatterNgram : ParseWords
+    {
+        private int size; 
+        public ParseWordLatterNgram(string path, int size) : base(path)
+        {
+            this.size = size; 
+        }
+
+        public override void GetCountsOfWords(string inputText)
+        {
+            var strArr1 = new List<string>(inputText.Split(' '));
+            var strArr = new List<string>();  
+            strArr1.ForEach(x => { if (!string.IsNullOrWhiteSpace(x)) strArr.Add(x) ; }); 
+
+            for(int i = 0; i < strArr.Count - size; i++)
+            { 
+                string[] arr = new string[size];
+                List<string> ls = new List<string>();
+                for (int j = i; j < i + size; j++)
+                {
+                    ls.Add(strArr[j]); 
+                }
+                string preS = string.Join(" ",ls.ToArray());
+
+                bool isStopSymbol = false;
+                Config.StopSymbolLatter.ForEach(x => isStopSymbol = preS.Contains(x));
+                if (isStopSymbol)
+                {
+                    continue; 
+                }
+
+                string s = null;
+                foreach (var item in preS) if (!char.IsPunctuation(item)) s += item; 
+
+                currentIndex++;
+                 
+                if (s == null) continue;
+                if (wordsDictionary.ContainsKey(s))
+                {
+                    wordsDictionary[s].Count++;
+                    ListOfNewWords.Add(false);
+                }
+                else
+                {
+                    newWords.Add(currentIndex);
+                    currentIndex = 0;
+                    wordsDictionary.Add(s, new ResearchElement(1, 0));
+                    ListOfNewWords.Add(true);
+                    i += size; 
+                }
+                CountOfWords++;
+            }
+        }
+    }
+    
 }

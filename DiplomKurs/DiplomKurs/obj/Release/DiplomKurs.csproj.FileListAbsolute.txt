@@ -8,3 +8,17 @@ C:\Бурбан\MainRepos\DiplomKurs\DiplomKurs\obj\Release\DiplomKurs.Propertie
 C:\Бурбан\MainRepos\DiplomKurs\DiplomKurs\obj\Release\DiplomKurs.csproj.GenerateResource.Cache
 C:\Бурбан\MainRepos\DiplomKurs\DiplomKurs\obj\Release\DiplomKurs.exe
 C:\Бурбан\MainRepos\DiplomKurs\DiplomKurs\obj\Release\DiplomKurs.pdb
+C:\Університет\!!!\DiplomKurs4\DiplomKurs\DiplomKurs\bin\Release\DiplomKurs.exe.config
+C:\Університет\!!!\DiplomKurs4\DiplomKurs\DiplomKurs\bin\Release\DiplomKurs.exe
+C:\Університет\!!!\DiplomKurs4\DiplomKurs\DiplomKurs\bin\Release\DiplomKurs.pdb
+C:\Університет\!!!\DiplomKurs4\DiplomKurs\DiplomKurs\bin\Release\nunit.framework.dll
+C:\Університет\!!!\DiplomKurs4\DiplomKurs\DiplomKurs\bin\Release\nunit.framework.xml
+C:\Університет\!!!\DiplomKurs4\DiplomKurs\DiplomKurs\obj\Release\DiplomKurs.csprojResolveAssemblyReference.cache
+C:\Університет\!!!\DiplomKurs4\DiplomKurs\DiplomKurs\obj\Release\DiplomKurs.Form1.resources
+C:\Університет\!!!\DiplomKurs4\DiplomKurs\DiplomKurs\obj\Release\DiplomKurs.FormConf.resources
+C:\Університет\!!!\DiplomKurs4\DiplomKurs\DiplomKurs\obj\Release\DiplomKurs.Properties.Resources.resources
+C:\Університет\!!!\DiplomKurs4\DiplomKurs\DiplomKurs\obj\Release\DiplomKurs.StopSymbolsChracters.resources
+C:\Університет\!!!\DiplomKurs4\DiplomKurs\DiplomKurs\obj\Release\DiplomKurs.csproj.GenerateResource.Cache
+C:\Університет\!!!\DiplomKurs4\DiplomKurs\DiplomKurs\obj\Release\DiplomKurs.csproj.CoreCompileInputs.cache
+C:\Університет\!!!\DiplomKurs4\DiplomKurs\DiplomKurs\obj\Release\DiplomKurs.exe
+C:\Університет\!!!\DiplomKurs4\DiplomKurs\DiplomKurs\obj\Release\DiplomKurs.pdb

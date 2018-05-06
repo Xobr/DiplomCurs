@@ -3,11 +3,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO; 
 
 namespace DiplomKurs
 {
     static class Program
     {
+        public static List<string> GetStringListFromFile(string path)
+        {
+            using (var sr = new StreamReader(path))
+            {
+                var res = new List<string>();
+                while (sr.Peek() >= 0)
+                    res.Add(sr.ReadLine());
+                return res; 
+            }
+        }
+
+        public static void RevriteSymbols(List<string> ls,string path)
+        {
+            using (var sw = new StreamWriter(path, false))
+            {
+                foreach (var item in ls)
+                {
+                    sw.WriteLine(item); 
+                }
+            }
+        }
 
         public static double Round(this double number, int countOfCHarakter = 1)
         {
@@ -58,6 +80,16 @@ namespace DiplomKurs
 
             res.Sort();
 
+            return res; 
+        }
+
+        public static string RemoveStopChars(this string str)
+        {
+            string res = str;
+            foreach (var elem in Config.StopChars)
+            {
+                res = res.Replace(elem.ToString(),""); 
+            }
             return res; 
         }
 

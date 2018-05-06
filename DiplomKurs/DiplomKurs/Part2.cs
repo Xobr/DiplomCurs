@@ -49,7 +49,7 @@ namespace DiplomKurs
 
         public Tuple<double,double> GetSqureAndD(int size)
         {
-            int sum = 0;
+            double sum = 0;
             int currentStart = 0;
             int count = 0;
             List<double> ls = new List<double>(); 
@@ -61,8 +61,10 @@ namespace DiplomKurs
                 count++;
                 ls.Add(crrSum); 
             }
-
-            return new Tuple<double,double>((sum / count),Mathematic.GetSqureError(ls.ToArray()));
+            sum = 0;
+            ls.ForEach(x => sum += x ); 
+            return new Tuple<double,double>((double)sum /(double) ls.Count ,Mathematic.GetSqureError(ls.ToArray()));//((double)sum / (double)count)
+            //((double)sum / (double)size)
         }
 
         public Tuple<List<int>,List<int>> GetResult()
